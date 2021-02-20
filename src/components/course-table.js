@@ -41,7 +41,8 @@ constructor(props) {
                     <tbody>
                     {
                         this.props.courses.map( course =>
-                            <CourseRow course={course}/>)
+                            <CourseRow deleteCourse={this.props.deleteCourse}
+                                       course={course}/>)
                     }
                     </tbody>
                     </table>

@@ -2,17 +2,22 @@ import React from 'react'
 import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import {BrowserRouter,Route} from "react-router-dom";
+import {findAllCourses} from "./services/course-services";
+
+
 class CourseManager extends React.Component{
     state ={
-        courses : [
-            {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-            {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-            {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-            {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-            {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-            {title:"CS56800",owner:"me", lastModified:"01/02/2021"},
-        ]
+        courses : []
     }
+    componentDidMount() {
+        findAllCourses()
+            .then(courses => this.setState({courses:courses}))
+    }
+
+deleteCourse = (course) =>
+{
+    alert("DeleteCourse" +course._id)
+}
     addCourse =() => {
 
         const newCourse={
@@ -37,7 +42,7 @@ class CourseManager extends React.Component{
 
                 <button onClick={this.addCourse}>Add Course</button>
                 <Route path ="/courses/table">
-                   <CourseTable courses = {this.state.courses}/>
+                   <CourseTable deleteCourse= {this.deleteCourse} courses = {this.state.courses}/>
                 </Route>
                 <Route path ="/courses/grid">
                     <CourseGrid courses ={this.state.courses}/>
