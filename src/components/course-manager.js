@@ -33,6 +33,8 @@ class CourseManager extends React.Component{
         return(
             <div>
             <h1>Hello from course manager</h1>
+
+
                 <button onClick={this.addCourse}>Add Course</button>
                 <Route path ="/courses/table">
                    <CourseTable courses = {this.state.courses}/>
