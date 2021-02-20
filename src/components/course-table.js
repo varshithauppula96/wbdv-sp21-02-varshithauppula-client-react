@@ -14,11 +14,21 @@ state ={
 }
 
 
-
+addCourse =() => {
+    alert("course added")
+    const newCourse={
+        title:"New Course",
+        owner: "Me",
+        lastModified:"20/02/2021"
+    }
+    this.state.courses.push(newCourse)
+    this.setState(this.state)
+}
     render() {
         return (
             <div>
             <h2>Course Table</h2>
+                <button onClick={this.addCourse}>Add Course</button>
                 <table className="table">
                     {
                         this.state.courses.map( course =>
