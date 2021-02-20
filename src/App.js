@@ -6,8 +6,8 @@ import {BrowserRouter,Route} from "react-router-dom";
 function App() {
   return (
       <BrowserRouter>
-          <Route path="/courses" component={CourseManager}/>
-          <Route path="/editor" component={CourseEditor}/>
+          <Route path="/courses" render={()=><CourseManager/>}/>
+          <Route path="/editor" render={(props)=><CourseEditor{...props}/>}/>
 
       </BrowserRouter>
   );

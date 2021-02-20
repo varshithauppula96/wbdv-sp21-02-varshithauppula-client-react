@@ -7,7 +7,7 @@ const CourseRow = ( {course,
                         lastModified="1/3/2020"
 }) =>
     <tr>
-                    <td><Link to="./editor">{course.title}</Link></td>
+                    <td><Link to="/editor">{course.title}</Link></td>
                     <td>{course.owner}</td>
                     <td>{course.lastModified}</td>
                     <td ><i className=" float-right fa fa-trash"> </i>
