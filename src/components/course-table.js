@@ -41,7 +41,9 @@ constructor(props) {
                     <tbody>
                     {
                         this.props.courses.map( course =>
-                            <CourseRow deleteCourse={this.props.deleteCourse}
+                            <CourseRow
+                                key={course._id}
+                                deleteCourse={this.props.deleteCourse}
                                        course={course}/>)
                     }
                     </tbody>

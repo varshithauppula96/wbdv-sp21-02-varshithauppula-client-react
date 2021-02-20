@@ -2,7 +2,7 @@ import React from 'react'
 import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
 import {BrowserRouter,Route} from "react-router-dom";
-import {findAllCourses} from "./services/course-services";
+import courseService, {findAllCourses, deleteCourse} from "./services/course-services";
 
 
 class CourseManager extends React.Component{
@@ -10,28 +10,36 @@ class CourseManager extends React.Component{
         courses : []
     }
     componentDidMount() {
-        findAllCourses()
+        courseService.findAllCourses()
             .then(courses => this.setState({courses:courses}))
     }
 
-deleteCourse = (course) =>
-{
-    alert("DeleteCourse" +course._id)
-}
-    addCourse =() => {
 
-        const newCourse={
-            title:"newTitle",
-            owner: "Me",
-            lastModified: (new Date()).toDateString()
-        }
-        this.state.courses.push(newCourse)
-        this.setState(this.state)
+    deleteCourse = (course) => {
+
+       courseService.deleteCourse(course._id)
+            .then(status => {
+                // this.setState({
+                //   courses: this.state.courses.filter(c => c._id !== course._id)
+                // })
+                this.setState((prevState) => ({
+                    courses: prevState.courses.filter(c => c._id !== course._id)
+                }))
+            })
     }
-
-
-
-
+    addCourse = () => {
+        // alert('add course')
+        const newCourse = {
+            title: "New Course",
+            owner: "me",
+            lastModified: "2/10/2021"
+        }
+        courseService.createCourse(newCourse)
+            .then(actualCourse => {
+                this.state.courses.push(actualCourse)
+                this.setState(this.state)
+            })
+    }
 
 
     render(){
