@@ -6,6 +6,8 @@ const CourseRow = ( {course,
                         owner="me",
                         lastModified="1/3/2020"
 }) =>
+
+
     <tr>
                     <td><Link to="/editor">{course.title}</Link></td>
                     <td>{course.owner}</td>
@@ -14,6 +16,7 @@ const CourseRow = ( {course,
                         <i className=" float-right fas fa-edit"> </i>
                         <i className=" float-right fas fa-check"> </i> </td>
                 </tr>
+
 
 
 

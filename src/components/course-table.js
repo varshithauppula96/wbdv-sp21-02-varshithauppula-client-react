@@ -3,27 +3,10 @@ import CourseRow from "./course-row";
 import {Link} from "react-router-dom";
 
 export default class CourseTable extends React.Component {
-state ={
-    courses : [
-        {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-        {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-        {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-        {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-        {title:"CS5610", owner:"me", lastModified:"01/02/2021"},
-        {title:"CS56800",owner:"me", lastModified:"01/02/2021"},
-    ]
-}
 
 
-addCourse =() => {
-    alert("course added")
-    const newCourse={
-        title:"New Course",
-        owner: "Me",
-        lastModified:"20/02/2021"
-    }
-    this.state.courses.push(newCourse)
-    this.setState(this.state)
+constructor(props) {
+    super(props);
 }
 
 
@@ -31,15 +14,36 @@ addCourse =() => {
         return (
             <div className="container-fluid">
             <h2>Course Table</h2>
-                <button onClick={this.addCourse}>Add Course</button>
-                <Link to ="/courses/grid">
-                <i className="fas fa-list float-right"></i>
-                </Link>
+
+
                 <table className="table">
+
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Owned By</th>
+                        <th>Last Modified</th>
+
+                        <th>
+                            <Link to ="/courses/grid">
+                                <i className=" p-1 fas fa-list float-right "></i>
+                            </Link>
+
+                                <i className=" p-1 fas fa-folder float-right "></i>
+
+
+                                <i className=" p-1 fas fa-folder float-right"></i>
+
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {
-                        this.state.courses.map( course =>
+                        this.props.courses.map( course =>
                             <CourseRow course={course}/>)
                     }
+                    </tbody>
                     </table>
 
             </div>
