@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Link} from "react-router-dom";
 
 const CourseRow = ( {course,
@@ -8,18 +8,38 @@ const CourseRow = ( {course,
                         deleteCourse
 
 }) => {
+
+   const [editing,setEditing] =useState(false)
     return (
 
         <tr>
-            <td><Link to="/editor">
-                {course.title}
-            </Link>
-            <input value={course.title}/></td>
+            <td>
+                {!editing &&
+                <Link to="/editor">
+                    {course.title}
+                </Link>
+                }
+                { editing &&
+                    <input value={course.title}/>
+                }
+                </td>
+
             <td>{course.owner}</td>
             <td>{course.lastModified}</td>
-            <td><i onClick={() => deleteCourse(course)} className=" float-right fas fa-trash"></i>
-                <i className=" float-right fas fa-edit"> </i>
-                <i className=" float-right fas fa-check"> </i></td>
+
+            <td>
+
+
+                {!editing &&
+                    <i onClick={() => setEditing(true)} className=" float-right fas fa-edit"> </i>
+                }
+                {editing &&
+                <i onClick={() => setEditing(false)} className=" float-right fas fa-check"> </i>
+                }
+                { editing &&
+                <i onClick={() => deleteCourse(course)} className=" float-right fas fa-trash"></i>
+                    }
+            </td>
         </tr>
 
 
