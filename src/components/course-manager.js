@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseTable from "./course-table";
 import CourseGrid from "./course-grid";
+import CourseNavbar from "./course-navbar";
 import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse} from "./services/course-services";
 
@@ -62,16 +63,21 @@ export default class CourseManager
 
     render() {
         return(
+
             <div>
 
 
-                <Link to="/">
-                    <i className="fas fa-2x fa-home float-right"></i>
-                </Link>
-                <h1>Course Manager</h1>
+                <CourseNavbar/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
                 <button onClick={this.addCourse}>
                     Add Course
                 </button>
+
+
 
                 {/*<Route path="/courses/table" component={CourseTable}/>*/}
                 <Route path="/courses/table" exact={true} >
