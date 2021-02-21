@@ -3,7 +3,7 @@ import CourseCard from "./course-card";
 import {Link} from "react-router-dom";
 import CourseRow from "./course-row";
 
-const CourseGrid =({courses})=>{
+const CourseGrid =({courses, deleteCourse})=>{
     return(
         <div className="container-fluid">
         <h2>Course Grid {courses.length}</h2>
@@ -13,7 +13,8 @@ const CourseGrid =({courses})=>{
         <i className="fas fa-table float-right"></i>
     </Link>
             {
-                courses.map( course => <CourseCard course={course}/> )
+                courses.map( course => <CourseCard deleteCourse= {deleteCourse} course={course}/> )
+
             }
 
 

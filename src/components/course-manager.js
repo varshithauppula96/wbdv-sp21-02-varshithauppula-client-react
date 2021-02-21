@@ -53,7 +53,7 @@ class CourseManager extends React.Component{
                    <CourseTable deleteCourse= {this.deleteCourse} courses = {this.state.courses}/>
                 </Route>
                 <Route path ="/courses/grid">
-                    <CourseGrid courses ={this.state.courses}/>
+                    <CourseGrid deleteCourse= {this.deleteCourse} courses ={this.state.courses}/>
                 </Route>
 
 

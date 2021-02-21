@@ -42,7 +42,7 @@ constructor(props) {
                     {
                         this.props.courses.map( course =>
                             <CourseRow
-                                key={course._id}
+
                                 deleteCourse={this.props.deleteCourse}
                                        course={course}/>)
                     }

@@ -11,7 +11,10 @@ const CourseRow = ( {course,
     return (
 
         <tr>
-            <td><Link to="/editor">{course.title}</Link></td>
+            <td><Link to="/editor">
+                {course.title}
+            </Link>
+            <input value={course.title}/></td>
             <td>{course.owner}</td>
             <td>{course.lastModified}</td>
             <td><i onClick={() => deleteCourse(course)} className=" float-right fas fa-trash"></i>
