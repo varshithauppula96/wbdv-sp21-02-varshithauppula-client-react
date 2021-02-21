@@ -13,7 +13,7 @@ export default class CourseTable extends
         return(
             <div>
 
-                <h2>Course Table</h2>
+
                 <table className="table">
                     <thead>
                     <tr>

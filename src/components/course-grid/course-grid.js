@@ -1,7 +1,8 @@
 import React  from 'react'
 import CourseCard from "./course-card";
 import {Link} from "react-router-dom";
-import CourseRow from "../course-row";
+
+
 
 
 const CourseGrid =({courses, deleteCourse, updateCourse})=>{

@@ -72,15 +72,28 @@ export default class CourseManagerComponent extends React.Component {
 </div>
     </Route>
     <Route path="/courses/grid" exact={true} >
-        <div>
+        <div className=" p-3">
             <CourseNavbar addCourse={this.addCourse}/>
 
         </div>
     </Route>
+
+
+                <Route path="/courses" exact={true} >
+                    <div>
+                        <h1>Welcome to Course Manager</h1>
+                        <div className="list-group">
+                            <Link to="/courses/table" className="list-group-item">
+                                Courses Table
+                            </Link>
+                            <Link to="/courses/grid" className="list-group-item">
+                                Courses Grid
+                            </Link>
+
+                    </div>
+                    </div>
+                </Route>
 <br/>
-
-
-    <br/>
     <br/>
     <br/>
 
@@ -95,6 +108,7 @@ export default class CourseManagerComponent extends React.Component {
                         courses={this.state.courses}/>
 
                 </Route>
+
 
                 <Route path="/courses/grid" exact={true} >
                     <CourseGrid deleteCourse= {this.deleteCourse}
