@@ -1,20 +1,18 @@
 import React from 'react'
 import CourseTable from "./course-table";
-import CourseGrid from "./course-grid";
+import CourseGrid from "./course-grid/course-grid";
 import CourseNavbar from "./course-navbar";
-import {Link, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, deleteCourse} from "./services/course-services";
 
-export default class CourseManager
-    extends React.Component {
+export default class CourseManagerComponent extends React.Component {
+
     state = {
         courses: []
     }
-
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({courses}))
-        // .then(courses => this.setState({courses: courses}))
     }
 
     updateCourse = (course) => {
@@ -35,7 +33,7 @@ export default class CourseManager
     }
 
     deleteCourse = (course) => {
-        // alert("delete course " + course._id)
+
         courseService.deleteCourse(course._id)
             .then(status => {
                 // this.setState({
@@ -47,13 +45,14 @@ export default class CourseManager
             })
     }
 
-    addCourse = () => {
-        // alert('add course')
+    addCourse = (newTitle) => {
+
         const newCourse = {
-            title: "New Course",
+            title: newTitle,
             owner: "me",
-            lastModified: "2/10/2021"
+            lastModified: (new Date()).toDateString()
         }
+
         courseService.createCourse(newCourse)
             .then(actualCourse => {
                 this.state.courses.push(actualCourse)
@@ -65,35 +64,49 @@ export default class CourseManager
         return(
 
             <div>
+<BrowserRouter>
+    <Route path="/courses/table" exact={true} >
+<div>
+    <CourseNavbar addCourse={this.addCourse}/>
+
+</div>
+    </Route>
+    <Route path="/courses/grid" exact={true} >
+        <div>
+            <CourseNavbar addCourse={this.addCourse}/>
+
+        </div>
+    </Route>
+<br/>
 
 
-                <CourseNavbar/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-
-                <button onClick={this.addCourse}>
-                    Add Course
-                </button>
-
+    <br/>
+    <br/>
+    <br/>
 
 
                 {/*<Route path="/courses/table" component={CourseTable}/>*/}
                 <Route path="/courses/table" exact={true} >
+
                     <CourseTable
                         updateCourse={this.updateCourse}
+                        addCourse={this.addCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
+
                 </Route>
-                {/*<Route path="/courses/grid" component={CourseGrid}/>*/}
+
                 <Route path="/courses/grid" exact={true} >
                     <CourseGrid deleteCourse= {this.deleteCourse}
+                                addCourse={this.addCourse}
                                 updateCourse ={this.updateCourse}
                         courses={this.state.courses}/>
                 </Route>
-                {/*<CourseTable courses={this.state.courses}/>*/}
-                {/*<CourseGrid courses={this.state.courses}/>*/}
+
+
+
+
+</BrowserRouter>
             </div>
         )
     }

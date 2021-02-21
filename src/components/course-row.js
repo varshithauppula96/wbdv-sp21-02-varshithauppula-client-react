@@ -26,9 +26,9 @@ const CourseRow = (
             <td>
                 {
                     !editing &&
-                    <Link to="/editor">
+                    <a href ="/editor">
                         {course.title}
-                    </Link>
+                    </a>
                 }
                 {
                     editing &&

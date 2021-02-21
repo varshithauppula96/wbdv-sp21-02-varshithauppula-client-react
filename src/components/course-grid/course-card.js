@@ -23,15 +23,15 @@ const CourseCard = ( {course,
         updateCourse(newCourse)
     }
     return (
-
-    <div className="card" style={{width: "18rem"}}>
-        <img className="card-img-top" src="..." alt="Card image cap"/>
+        <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-1">
+    <div className="card" >
+        <img className="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap"/>
         <div className="card-body">
             <h5 className="card-title">
             {!editing &&
-           <Link to="/editor">
+           <a href="/editor">
                 {course.title}
-            </Link>
+            </a>
                 }
                 {editing &&
                 <input
@@ -40,8 +40,7 @@ const CourseCard = ( {course,
                     value={title}/>
                 }
             </h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk
-                of the card's content.</p>
+            <p className="card-text">Some Description</p>
             <div>
 
                 {!editing &&
@@ -57,6 +56,7 @@ const CourseCard = ( {course,
             </div>
         </div>
     </div>
+        </div>
     )}
 
 
