@@ -1,53 +1,63 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 
-const CourseRow = ( {course,
+const CourseRow = (
+    {
+        course,
+        lastModified="1/1/2021",
+        owner="who knows?",
+        deleteCourse,
+        updateCourse
+    }) => {
+    const [editing, setEditing] = useState(false)
+    const [title, setTitle] = useState(course.title)
 
-                        owner="me",
-                        lastModified="1/3/2020",
-                        deleteCourse
+    const saveCourse = () => {
+        setEditing(false)
+        const newCourse = {
+            ...course,
+            title: title
+        }
+        updateCourse(newCourse)
+    }
 
-}) => {
-
-   const [editing,setEditing] =useState(false)
-    const [title,setTitle] =useState("")
-    return (
-
+    return(
         <tr>
             <td>
-                {!editing &&
-                <Link to="/editor">
-                    {course.title}
-                </Link>
+                {
+                    !editing &&
+                    <Link to="/editor">
+                        {course.title}
+                    </Link>
                 }
-                { editing &&
-                <input
-                    className="form-control"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}/>
+                {
+                    editing &&
+                    <input
+                        className="form-control"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}/>
                 }
-                </td>
-
+            </td>
             <td>{course.owner}</td>
             <td>{course.lastModified}</td>
-
             <td>
-
-
-                {!editing &&
-                    <i onClick={() => setEditing(true)} className=" float-right fas fa-edit"> </i>
-                }
                 {editing &&
-                <i onClick={() => setEditing(false)} className=" float-right fas fa-check"> </i>
+                <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
                 }
-                { editing &&
-                <i onClick={() => deleteCourse(course)} className=" float-right fas fa-trash"></i>
-                    }
+
+                {
+                    editing &&
+                    <i onClick={() => saveCourse()} className="fas fa-check"></i>
+                }
+
+                {
+                    !editing &&
+                    <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
+                }
+
+
             </td>
-        </tr>
-
-
-    )
+        </tr>)
 }
 
 export default CourseRow
