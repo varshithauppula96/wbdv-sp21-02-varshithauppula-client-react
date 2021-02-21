@@ -2,7 +2,7 @@ import React ,{useState} from 'react';
 import {Link} from "react-router-dom";
 
 const CourseCard = ( {course,
-                        title ="webdev",
+
                         owner="me",
                         lastModified="1/3/2020",
     deleteCourse
@@ -10,6 +10,7 @@ const CourseCard = ( {course,
 {
 
     const [editing,setEditing] =useState(false)
+    const [title,setTitle] =useState("")
     return (
 
     <div className="card" style={{width: "18rem"}}>
@@ -22,7 +23,7 @@ const CourseCard = ( {course,
             </Link>
                 }
                 {editing &&
-                <input value={course.title}/>
+                <input value={title}/>
                     }
             </h5>
             <p className="card-text">Some quick example text to build on the card title and make up the bulk

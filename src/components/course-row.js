@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {Link} from "react-router-dom";
 
 const CourseRow = ( {course,
-                        title ="webdev",
+
                         owner="me",
                         lastModified="1/3/2020",
                         deleteCourse
@@ -10,6 +10,7 @@ const CourseRow = ( {course,
 }) => {
 
    const [editing,setEditing] =useState(false)
+    const [title,setTitle] =useState("")
     return (
 
         <tr>
@@ -20,7 +21,10 @@ const CourseRow = ( {course,
                 </Link>
                 }
                 { editing &&
-                    <input value={course.title}/>
+                <input
+                    className="form-control"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}/>
                 }
                 </td>
 
