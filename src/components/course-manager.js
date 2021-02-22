@@ -52,7 +52,7 @@ export default class CourseManagerComponent extends React.Component {
             owner: "me",
             lastModified: (new Date()).toDateString()
         }
-
+        document.getElementById('title-fld').value = ""
         courseService.createCourse(newCourse)
             .then(actualCourse => {
                 this.state.courses.push(actualCourse)
@@ -72,7 +72,7 @@ export default class CourseManagerComponent extends React.Component {
 </div>
     </Route>
     <Route path="/courses/grid" exact={true} >
-        <div className=" p-3">
+        <div>
             <CourseNavbar addCourse={this.addCourse}/>
 
         </div>
@@ -111,9 +111,10 @@ export default class CourseManagerComponent extends React.Component {
 
 
                 <Route path="/courses/grid" exact={true} >
-                    <CourseGrid deleteCourse= {this.deleteCourse}
-                                addCourse={this.addCourse}
-                                updateCourse ={this.updateCourse}
+                    <CourseGrid
+                        updateCourse ={this.updateCourse}
+                        addCourse={this.addCourse}
+                        deleteCourse= {this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
 

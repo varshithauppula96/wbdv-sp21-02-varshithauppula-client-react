@@ -40,7 +40,8 @@ const CourseRow = (
             </td>
             <td>{course.owner}</td>
             <td>{course.lastModified}</td>
-            <td>
+            <td >
+                <div className="float-right">
                 {editing &&
                 <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
                 }
@@ -54,7 +55,7 @@ const CourseRow = (
                     !editing &&
                     <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
                 }
-
+                </div>
 
             </td>
         </tr>)

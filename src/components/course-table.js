@@ -12,8 +12,6 @@ export default class CourseTable extends
     render() {
         return(
             <div>
-
-
                 <table className="table">
                     <thead>
                     <tr>
@@ -21,11 +19,13 @@ export default class CourseTable extends
                         <th className="d-none d-sm-table-cell">Owned by</th>
                         <th className="d-none d-lg-table-cell">Last Modified</th>
                         <th>
-                            <a className="ml-2" href="#"><i className="pl-2 fa fa-folder fa-2x"/></a>
-                            <a className="ml-2" href="#"><i className=" pl-2 fa fa-folder fa-2x"/></a>
+                            <div className="float-right">
+                            <a className="ml-2" href="#"><i className="pl-2 fa fa-folder "/></a>
+                            <a className="ml-2" href="#"><i className=" pl-2 fas fa-sort"/></a>
                             <Link to="/courses/grid">
-                                <i className=" pl-3 fas fa-th fa-2x"></i>
+                                <i className=" pl-3 fas fa-th"></i>
                             </Link>
+            </div>
                         </th>
                     </tr>
                     </thead>

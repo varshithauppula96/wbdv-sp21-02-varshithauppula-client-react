@@ -7,7 +7,7 @@ import Home from "./components/home"
 function App() {
     return (
         <BrowserRouter>
-            <div className="container-fluid">
+            <div className="container-fill">
                 <Route path="/" exact={true}  component={Home}/>
                 <Route path="/home" exact={true}  component={Home}/>
                 <Route path="/courses" component={CourseManager}/>
