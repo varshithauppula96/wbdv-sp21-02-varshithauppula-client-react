@@ -8,15 +8,16 @@ import CourseRow from "../course-row";
 const CourseGrid =({courses, deleteCourse, updateCourse})=>{
     return(
 <div>
-        <table className="table" style={{marginTop: "1px"}}>
+        <table className="table">
             <thead>
             <tr>
-                <th className="d-none d-sm-table-cell">Recent documents</th>
-                <th className="d-none d-sm-table-cell">Owned by me</th>
+                <th className="d-none d-md-table-cell">Recent documents</th>
+                <th className="d-none d-md-table-cell">Owned by me</th>
+
                 <th>
                     <div className="float-right">
                     <a className="ml-2" href="#"><i className="fa fa-folder"/></a>
-                    <a className="ml-2" href="#"><i className="fa fa-sort-alpha-asc"/></a>
+                        <a className="ml-2" href="#"><i className=" pl-2 fas fa-sort"/></a>
                     <Link to="/courses/table"><i className="pl-2 fa fa-list"/></Link>
                     </div>
                 </th>
@@ -24,7 +25,7 @@ const CourseGrid =({courses, deleteCourse, updateCourse})=>{
             </thead>
         </table>
 
-        <div className="card-deck mt-5">
+        <div className="card-deck mt-2">
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseRow from "./course-row";
+import CourseRow from "../course-row";
 import {Link} from "react-router-dom";
 
 export default class CourseTable extends
@@ -11,20 +11,22 @@ export default class CourseTable extends
 
     render() {
         return(
-            <div>
-                <table className="table">
+            <div className="container-fluid">
+                <table className="table table-striped" responsive="sm">
                     <thead>
                     <tr>
                         <th>Title</th>
-                        <th className="d-none d-sm-table-cell">Owned by</th>
-                        <th className="d-none d-lg-table-cell">Last Modified</th>
+                        <th className="  d-none d-sm-table-cell">Owned by</th>
+                        <th className="  d-none d-lg-table-cell">Last Modified</th>
                         <th>
                             <div className="float-right">
-                            <a className="ml-2" href="#"><i className="pl-2 fa fa-folder "/></a>
-                            <a className="ml-2" href="#"><i className=" pl-2 fas fa-sort"/></a>
-                            <Link to="/courses/grid">
-                                <i className=" pl-3 fas fa-th"></i>
-                            </Link>
+                                <Link to="/courses/grid">
+                                    <i className=" pl-3 fas fa-th float-right"></i>
+                                </Link>
+                                <a className="ml-2" href="#"><i className=" pl-2 fas fa-sort float-right"/></a>
+                            <a className="ml-2" href="#"><i className="pl-2 fa fa-folder float-right " /></a>
+
+
             </div>
                         </th>
                     </tr>

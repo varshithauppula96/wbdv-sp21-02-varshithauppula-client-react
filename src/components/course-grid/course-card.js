@@ -20,9 +20,9 @@ const CourseCard = (
     }
     return (
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-1">
-            <div className="card" style={{width: "100%", margin: "15px"}}>
+            <div className="card" >
                 {<img className="card-img-top" src="https://picsum.photos/300/200" />}
-                <div className="card-body" style={{width: "10rem", hieght: "18em", margin: "18px"}} >
+                <div className="card-body" >
                     <h5 className="card-title">
                         {!editing &&
                         <a href="/editor">

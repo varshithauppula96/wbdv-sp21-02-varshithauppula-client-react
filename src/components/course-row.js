@@ -38,8 +38,8 @@ const CourseRow = (
                         value={title}/>
                 }
             </td>
-            <td>{course.owner}</td>
-            <td>{course.lastModified}</td>
+            <td><div className="d-none d-sm-table-cell">{course.owner}</div> </td>
+            <td><div className="d-none d-lg-table-cell">{course.lastModified} </div> </td>
             <td >
                 <div className="float-right">
                 {editing &&
