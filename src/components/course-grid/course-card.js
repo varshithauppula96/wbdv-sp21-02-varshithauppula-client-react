@@ -22,7 +22,7 @@ const CourseCard = (
         <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-1">
             <div className="card" style={{width: "100%", margin: "15px"}}>
                 {<img className="card-img-top" src="https://picsum.photos/300/200" />}
-                <div className="card-body" style={{width: "13rem", hieght: "18em", margin: "15px"}} >
+                <div className="card-body" style={{width: "10rem", hieght: "18em", margin: "18px"}} >
                     <h5 className="card-title">
                         {!editing &&
                         <a href="/editor">
@@ -31,7 +31,7 @@ const CourseCard = (
                         }
                         {editing &&
                         <input
-                            className="form-control"
+                            className="form-control "
                             onChange={(e) => setTitle(e.target.value)}
                             value={title}/>
                         }
