@@ -1,8 +1,15 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import ModuleList from "./module-lists";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import moduleReducer from "../reducers/modules-reducer";
 
+const store = createStore(moduleReducer)
 const CourseEditor =({history}) =>{
+
     return(
+        <Provider store={store}>
         <div>
             <h1>
                 <button onClick={()=>history.goBack()}><i className="fa fa-times" aria-hidden="true"> </i> </button>
@@ -59,28 +66,7 @@ const CourseEditor =({history}) =>{
                         </nav>
 
                         <div className="row">
-                            <div className="col-4">
-                                <div className="p-3 bg-dark text-black">
-                                    <ul className="list-group">
-                                        <li className=" mb-2 list-group-item bg-secondary">Module 1-jQuery<i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className=" mb-2 list-group-item active"> Module 2-React<i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className=" mb-2 list-group-item bg-secondary">Module 3-Redux<i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className=" mb-2 list-group-item bg-secondary">Module 4-Native <i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className="mb-2 list-group-item bg-secondary">Module 5-Angular<i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className=" mb-2 list-group-item  bg-secondary">Module 6-Node<i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <li className=" mb-2 list-group-item  bg-secondary">Module 7-Mongo <i
-                                            className="pull-right fa fa-close"> </i></li>
-                                        <div className="mb-2 pr-3 pt-3 float-left"><i
-                                            className=" text-white pull-right fa fa-plus"> </i></div>
-                                    </ul>
-                                </div>
-                            </div>
+                            <ModuleList/>
 
                             <br/>
                             <div className=" row">
@@ -166,6 +152,9 @@ const CourseEditor =({history}) =>{
                 </div>
             </div>
         </div>
+
+    </Provider>
     )
+
 }
 export default CourseEditor
