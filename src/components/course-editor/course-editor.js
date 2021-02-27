@@ -1,11 +1,22 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import {combineReducers} from 'redux'
 import ModuleList from "./module-lists";
+import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
+
+
 import {Provider} from "react-redux";
 import {createStore} from "redux";
+import lessonReducer from "../reducers/lesson-reducer";
 import moduleReducer from "../reducers/modules-reducer";
+import topicReducer from "../reducers/topic-reducer";
 
-const store = createStore(moduleReducer)
+const reducer =combineReducers({moduleReducer:moduleReducer,
+lessonReducer:lessonReducer,
+topicReducer:topicReducer})
+
+const store = createStore(reducer)
 const CourseEditor =({history}) =>{
 
     return(
@@ -20,50 +31,7 @@ const CourseEditor =({history}) =>{
                 <div className="row">
 
                     <div className="col-12">
-                        <nav className="navbar navbar-dark bg-secondary ">
-                            <ul className=" nav nav-pills ">
-
-
-                                <li className="nav-item ">
-                                    <a className="bg-secondary nav-link text-white " href="#" tabIndex="-1"
-                                       aria-disabled="true">
-                                        <i className="fa fa-close"></i>
-                                    </a>
-                                </li>
-                                <li className="nav-item p-2 pr-5">
-                                    <a className="bg-secondary nav-link text-white" href="#">CS5610-Web Development</a>
-                                </li>
-                                <li className="nav-item p-2">
-                                    <a className=" bg-secondary nav-link text-white" href="#">Build</a>
-                                </li>
-                                <li className="nav-item p-2 ">
-                                    <a className=" bg-secondary nav-link active" href="#">
-                                        Active
-
-                                    </a>
-                                </li>
-                                <li className="nav-item p-2">
-                                    <a className=" bg-secondary nav-link text-white" href="#">Theme</a>
-                                </li>
-                                <li className="nav-item p-2">
-                                    <a className=" bg-secondary nav-link text-white" href="#">Store</a>
-                                </li>
-                                <li className="nav-item p-2">
-                                    <a className=" bg-secondary nav-link text-white" href="#">Apps</a>
-                                </li>
-                                <li className="nav-item p-2">
-                                    <a className="bg-secondary nav-link text-white" href="#">Settings</a>
-                                </li>
-
-                                <li className="nav-item p-2">
-                                    <a className="bg-secondary nav-link text-white " href="#" tabIndex="-1"
-                                       aria-disabled="true">
-                                        <i className="fa fa-plus"></i>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </nav>
+                    <LessonTabs/>
 
                         <div className="row">
                             <ModuleList/>
@@ -71,29 +39,7 @@ const CourseEditor =({history}) =>{
                             <br/>
                             <div className=" row">
                                 <div className="col-12">
-                                    <ul className="nav nav-pills">
-                                        <li className="nav-item">
-                                            <a className="mt-3 mr-2 bg-secondary text-light nav-link  "
-                                               aria-current="page" href="#">Topic1</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className=" mt-3 mr-2 bg-dark text-light nav-link" href="#">Topic2</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className=" mt-3 mr-2 bg-secondary text-light nav-link"
-                                               href="#">Topic3</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className=" mt-3 mr-2 bg-secondary text-light nav-link"
-                                               href="#">Topic4</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#"
-                                               tabIndex="-1 "> + </a>
-                                        </li>
-
-
-                                    </ul>
+                            <TopicPills/>
 
                                     <form className="m-5 border container-fluid">
                                         <div className="form-group">
@@ -157,4 +103,5 @@ const CourseEditor =({history}) =>{
     )
 
 }
+
 export default CourseEditor
