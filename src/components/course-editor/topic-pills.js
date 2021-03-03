@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
+import EditableItem from "./editable-item";
 
 
 
@@ -11,7 +12,8 @@ import {connect} from "react-redux";
             <ul className="nav nav-pills">
         {
             topics.map(topic=>
-                <li className=" nav-item "> <a className=" mt-3 mr-2 bg-dark text-light nav-link" href="#"> {topic.title}</a>
+                <li className=" nav-item "> <a className=" mt-3 mr-2 bg-dark text-light nav-link" href="#">
+                    <EditableItem item={topic}/></a>
             </li>)
         }
 

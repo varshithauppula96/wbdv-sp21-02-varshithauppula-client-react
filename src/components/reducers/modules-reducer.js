@@ -12,7 +12,46 @@ const initialState ={
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATEMODULE":
+           const newModule = {
+               title:"New Module",
+               _id : (new Date()).getTime()
+           }
+           return {
+               ...state,
+               modules: [
+                   ...state.modules,
+                   newModule
+               ]
+           }
+
         case "DELETEMODULE":
+            return{
+                ...state,
+                modules: state.modules.filter(
+                    module => {
+                        if(module._id !== action.deleteModule._id)
+                        {
+                            return true
+                        }
+                        else{
+                            return false
+                        }
+                    })
+            }
+
+        case "UPDATEMODULE":
+            return{
+                ...state,
+                modules:state.modules.map(module =>{
+                    if(module._id === action.updateModule._id){
+                        return action.updateModule
+                    }
+                    else
+                    {
+                        return module
+                    }
+                })
+            }
         default:
             return state
 

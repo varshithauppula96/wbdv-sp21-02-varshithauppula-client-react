@@ -4,6 +4,8 @@ const initialState ={
         {title:'Topic2', _id:'12'},
         {title:'Topic3', _id:'13'},
         {title:'Topic4', _id:'14'},
+        {title:'Topic4', _id:'14'},
+        {title:'Topic4', _id:'14'}
 
     ]
 }
