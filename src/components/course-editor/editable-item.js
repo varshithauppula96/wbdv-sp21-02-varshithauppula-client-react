@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 
 const EditableItem =({item,
+    to,
                      updateItem,
                      deleteItem}) => {
         const [editing,setEditing] = useState(false)
@@ -11,7 +12,7 @@ const EditableItem =({item,
                 {
                         !editing &&
                         <>
-                                <Link to="/">
+                                <Link to={to}>
                                         {item.title}
                                 </Link>
 

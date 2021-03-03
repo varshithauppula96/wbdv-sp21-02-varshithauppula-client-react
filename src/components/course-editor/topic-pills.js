@@ -4,7 +4,9 @@ import EditableItem from "./editable-item";
 
 
 
-        const TopicPills = ({topics= []}) =>
+        const TopicPills = ({topics,
+                                updateTopic,
+                                deleteTopic= []}) =>
         {
             return(
 
@@ -13,7 +15,10 @@ import EditableItem from "./editable-item";
         {
             topics.map(topic=>
                 <li className=" nav-item "> <a className=" mt-3 mr-2 bg-dark text-light nav-link" href="#">
-                    <EditableItem item={topic}/></a>
+                    <EditableItem
+                        deleteItem={deleteTopic}
+                        updateItem={updateTopic}
+                        item={topic}/></a>
             </li>)
         }
 
@@ -30,6 +35,14 @@ import EditableItem from "./editable-item";
             topics: state.topicReducer.topics
         })
 
-            const dtpm  =(dispatch) =>{}
+            const dtpm  =(dispatch) =>({
+
+                updateTopic:(newItem) => {
+                    dispatch({type:"UPDATETOPIC", updateTopic:newItem})
+                },
+                deleteTopic:  (topicToDelete) =>{
+                    dispatch({type:"DELETETOPIC",deleteTopic:topicToDelete})
+                }
+            })
 
             export default (connect(stpm,dtpm))(TopicPills)

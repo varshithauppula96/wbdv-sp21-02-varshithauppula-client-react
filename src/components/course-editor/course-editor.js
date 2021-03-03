@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import {combineReducers} from 'redux'
 import ModuleList from "./module-lists";
 import LessonTabs from "./lesson-tabs";
@@ -17,8 +17,8 @@ lessonReducer:lessonReducer,
 topicReducer:topicReducer})
 
 const store = createStore(reducer)
-const CourseEditor =({history}) =>{
-
+const CourseEditor =({history,params}) =>{
+const {layout,courseId,moduleId}=useParams();
     return(
         <Provider store={store}>
 
@@ -26,7 +26,11 @@ const CourseEditor =({history}) =>{
                 <button onClick={()=>history.goBack()}><i className="fa fa-times" aria-hidden="true"> </i> </button>
            Course Editor
             </h1>
-
+<ul>
+    <li>{layout}</li>
+    <li>{courseId}</li>
+    <li>{moduleId}</li>
+</ul>
 
             <div className="row">
                 <div className="col-4">
