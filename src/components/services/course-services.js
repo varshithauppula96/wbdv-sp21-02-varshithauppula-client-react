@@ -30,6 +30,7 @@ export const updateCourse = (courseId,course) =>
     })
         .then(response => response.json())
 
+
 const api = {
     findAllCourses: findAllCourses,
     deleteCourse: deleteCourse,

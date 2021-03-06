@@ -2,7 +2,8 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom';
 import EditableItem from "./editable-item";
-import {findModulesForCourse} from "../services/module-services";
+import {findModulesForCourse,createModule,deleteModule} from "../services/module-services";
+import moduleService from "../services/module-services"
 
 const ModuleList = ({modules= [],
                     createModule,
@@ -11,7 +12,10 @@ const ModuleList = ({modules= [],
                     findModulesForCourse}) =>
 {
     const {layout,courseId,moduleId}=useParams();
-useEffect(()=>{findModulesForCourse(courseId)},[])
+    useEffect(() => {
+        // console.log(courseId)
+        findModulesForCourse(courseId)
+    }, [])
     return(
 
 
@@ -28,13 +32,14 @@ useEffect(()=>{findModulesForCourse(courseId)},[])
             modules.map(module=>
             <li className=" mb-2 list-group-item bg-secondary">
                 <EditableItem
+                    key={module._id}
                     to = {`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                     deleteItem={deleteModule}
                     updateItem={updateModule}
                     item={module}/>
                 </li>)
         }
-            <div ><button onClick={createModule}
+            <div ><button onClick={()=>createModule(courseId)}
                 className=" float-right fa fa-plus"> </button></div>
  </ul>
 
@@ -50,17 +55,18 @@ const stpm = (state) => ({
 })
 
 const dtpm  =(dispatch) =>({
-    createModule: () =>{
-dispatch({type:"CREATEMODULE"})
+    createModule: (courseId) =>{
+        moduleService.createModule(courseId,{title:'new Module'}).then(module => dispatch({type: "CREATEMODULE", module: module}))
     },
     updateModule:(newItem) => {
-        dispatch({type:"UPDATEMODULE", updateModule:newItem})
+        moduleService.updateModule(newItem._id,newItem).then (status=> dispatch({type:"UPDATEMODULE", updateModule:newItem}))
     },
     deleteModule:  (moduleToDelete) =>{
-        dispatch({type:"DELETEMODULE",deleteModule:moduleToDelete})
+        moduleService.deleteModule(moduleToDelete._id).then(
+            status => dispatch({type:"DELETEMODULE",moduleToDelete:moduleToDelete}))
     },
     findModulesForCourse:(courseID)=>{
-findModulesForCourse(courseID).then(modules =>dispatch({type:"FIND_MODULE_FOR_COURSE",modules:modules}))
+moduleService.findModulesForCourse(courseID).then(modules =>dispatch({type:"FIND_MODULE_FOR_COURSE",modules:modules}))
     }
 })
 
