@@ -13,6 +13,17 @@ const initialState ={
 const topicReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATETOPIC":
+            const newTopic = {
+                title:"New Topic",
+                _id : (new Date()).getTime()
+            }
+            return {
+                ...state,
+                topics: [
+                    ...state.topics,
+                    newTopic
+                ]
+            }
         case "DELETETOPIC": return{
             ...state,
             topics: state.topics.filter(

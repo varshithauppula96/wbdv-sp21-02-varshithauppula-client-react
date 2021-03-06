@@ -12,6 +12,17 @@ const initialState ={
 const lessonReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATELESSON":
+            const newLesson = {
+                title:"New Lesson",
+                _id : (new Date()).getTime()
+            }
+            return {
+                ...state,
+                lessons: [
+                    ...state.lessons,
+                    newLesson
+                ]
+            }
         case "DELETELESSON": return{
             ...state,
             lessons: state.lessons.filter(

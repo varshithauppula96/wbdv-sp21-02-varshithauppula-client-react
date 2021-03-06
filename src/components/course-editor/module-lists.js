@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom';
 import EditableItem from "./editable-item";
+import {findModulesForCourse} from "../services/module-services";
+
 const ModuleList = ({modules= [],
                     createModule,
                     updateModule,
-                        deleteModule}) =>
+                        deleteModule,
+                    findModulesForCourse}) =>
 {
     const {layout,courseId,moduleId}=useParams();
-
+useEffect(()=>{findModulesForCourse(courseId)},[])
     return(
 
 
@@ -55,6 +58,9 @@ dispatch({type:"CREATEMODULE"})
     },
     deleteModule:  (moduleToDelete) =>{
         dispatch({type:"DELETEMODULE",deleteModule:moduleToDelete})
+    },
+    findModulesForCourse:(courseID)=>{
+findModulesForCourse(courseID).then(modules =>dispatch({type:"FIND_MODULE_FOR_COURSE",modules:modules}))
     }
 })
 
