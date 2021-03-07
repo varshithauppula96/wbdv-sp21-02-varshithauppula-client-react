@@ -26,11 +26,7 @@ const {layout,courseId,moduleId}=useParams();
                 <button onClick={()=>history.goBack()}><i className="fa fa-times" aria-hidden="true"> </i> </button>
            Course Editor
             </h1>
-<ul>
-    <li>{layout}</li>
-    <li>{courseId}</li>
-    <li>{moduleId}</li>
-</ul>
+
 
             <div className="row">
                 <div className="col-4">

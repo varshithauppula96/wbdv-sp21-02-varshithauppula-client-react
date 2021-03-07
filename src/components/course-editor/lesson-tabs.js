@@ -1,42 +1,54 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import {connect} from "react-redux";
 import EditableItem from "./editable-item";
-import{useParams} from "react-router-dom"
+import{useParams} from "react-router-dom";
+import lessonService from "../services/lesson-service";
+
+
 const LessonTabs = ({lessons= [],
+                        findLessonsForModule,
     to,
     createLesson,
                         updateLesson,
-                        deleteLesson}) =>
+                        deleteLesson
+                    }) =>
 {
     const {layout,lessonId,moduleId,courseId} = useParams();
+    useEffect(()=>{
+if(moduleId !== "undefined" && typeof moduleId !== "undefined"){
+        findLessonsForModule(moduleId)}
+    },[moduleId])
     return(
              <div>
-                 <ul>
 
-                 <li>{layout}</li>
-                 <li>{courseId}</li>
-                 <li>{moduleId}</li>
-                     <li>{lessonId}</li>
-             </ul>
-                    <nav className="navbar navbar-dark bg-secondary ">
+                    <nav className="navbar navbar-dark ">
 
                         <ul className=" nav nav-tabs ">
 
                             {
                                 lessons.map(lesson=>
-                                    <li className=" nav-item">
-                                        <a className=" bg-secondary nav-link text-white" href="#">
+                                    <li className="nav-item  " >
+                                        <a className={`nav-link ${lesson._id === lessonId ?'bg-primary': ''} `} href="#">
                                             <EditableItem
-                                                to = {`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+                                                key={lesson._id}
+                                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                                 deleteItem={deleteLesson}
-                                                            updateItem={updateLesson}
-                                                            item={lesson}/></a>
+                                                updateItem={updateLesson}
+                                                item={lesson}/></a>
 
-                                    </li>)
+                                    </li>
+
+
+                                )
+
+
+
                             }
-                            <div ><button onClick={createLesson}
-                                          className=" float-right fa fa-plus"> </button></div>
+                            <li> <button onClick={()=>createLesson(moduleId)}
+                                         className=" float-right fa fa-plus"> </button></li>
+
                                     </ul>
+
                     </nav>
 
 
@@ -53,14 +65,20 @@ const stpm = (state) => ({
 
 const dtpm  =(dispatch) =>({
 
-    createLesson: () =>{
-        dispatch({type:"CREATELESSON"})
+
+
+    createLesson: (moduleId) =>{
+        lessonService.createLesson(moduleId,{title:'new Lesson'}).then(lesson =>dispatch({type: "CREATELESSON", lesson:lesson}))
     },
     updateLesson:(newItem) => {
         dispatch({type:"UPDATELESSON", updateLesson:newItem})
     },
     deleteLesson:  (lessonToDelete) =>{
         dispatch({type:"DELETELESSON",deleteLesson:lessonToDelete})
+    },
+    findLessonsForModule:(moduleId) =>{
+
+        lessonService.findLessonsForModule(moduleId).then(lessons =>{dispatch({type:"FIND_LESSONS_FOR_MODULE",lessons:lessons})})
     }
 })
 

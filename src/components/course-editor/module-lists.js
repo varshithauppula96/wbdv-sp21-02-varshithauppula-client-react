@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom';
 import EditableItem from "./editable-item";
-import {findModulesForCourse,createModule,deleteModule} from "../services/module-services";
+
 import moduleService from "../services/module-services"
 
 const ModuleList = ({modules= [],
@@ -21,18 +21,14 @@ const ModuleList = ({modules= [],
 
                 <div className="p-3 bg-dark text-black">
     <h1> Module List</h1>
-                    <ul>
 
-                        <li>{layout}</li>
-                        <li>{courseId}</li>
-                        <li>{moduleId}</li>
-                    </ul>
         <ul className="list-group">
             {
             modules.map(module=>
-            <li className=" mb-2 list-group-item bg-secondary">
+            <li className={` mb-2 list-group-item ${module._id === moduleId ?'active': ''}`}>
                 <EditableItem
                     key={module._id}
+
                     to = {`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
                     deleteItem={deleteModule}
                     updateItem={updateModule}

@@ -1,26 +1,16 @@
 const initialState ={
-    lessons:[
-        {title:'Lesson1', _id:'1'},
-        {title:'Lesson2', _id:'2'},
-        {title:'Lesson3', _id:'3'},
-        {title:'Lesson4', _id:'4'},
-
-
-    ]
+    lessons:[]
 }
 
 const lessonReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATELESSON":
-            const newLesson = {
-                title:"New Lesson",
-                _id : (new Date()).getTime()
-            }
+
             return {
                 ...state,
                 lessons: [
                     ...state.lessons,
-                    newLesson
+                    action.lesson
                 ]
             }
         case "DELETELESSON": return{
@@ -48,6 +38,13 @@ const lessonReducer = (state = initialState, action) => {
                 }
             })
         }
+        case "FIND_LESSONS_FOR_MODULE":
+            return{
+                ...state,
+                lessons:action.lessons,
+
+            }
+
         default:
             return state
 
