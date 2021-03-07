@@ -28,12 +28,13 @@ const TopicPills = ({topics =[],
             },[lessonId,moduleId])
             return(
 
-          <div>
+          <div >
 
+              <nav className="navbar navbar-dark ">
             <ul className="nav nav-pills">
         {
             topics.map(topic=>
-                <li className=" nav-item "> <a className=" mt-3 mr-2 bg-dark text-light nav-link" href="#">
+                <li className=" nav-item "> <a className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#">
                     <EditableItem
                         key={topic._id}
                         to = {`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
@@ -42,10 +43,13 @@ const TopicPills = ({topics =[],
                         item={topic}/></a>
             </li>)
         }
+                <li className="nav-item">
+                    <a onClick={()=>createTopic(lessonId,moduleId)} className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#" tabIndex="-1 "> Add Topic + </a>
+                </li>
 
-                <div ><button onClick={()=>createTopic(lessonId,moduleId)}
-                              className=" float-right fa fa-plus"> </button></div>
+
             </ul>
+              </nav>
 
             </div>
 

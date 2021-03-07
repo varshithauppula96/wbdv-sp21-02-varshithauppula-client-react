@@ -26,8 +26,8 @@ const {layout,courseId,moduleId}=useParams();
     }, [courseId])
     return(
         <Provider store={store}>
-
-            <h1>
+<div className="container-fluid">
+            <h1 >
                 <button>
                       <a href={`/courses/${layout}`} className="fa fa-times" aria-hidden="true"> </a>
 
@@ -36,15 +36,18 @@ const {layout,courseId,moduleId}=useParams();
             </h1>
 
 
-            <div className="row">
+            <div className="row ">
                 <div className="col-4">
+
                     <ModuleList/>
                 </div>
                 <div className="col-8">
                     <LessonTabs/>
+                    <br/>
                     <TopicPills/>
                 </div>
                 </div>
+</div>
 
 
 

@@ -19,7 +19,7 @@ if(moduleId !== "undefined" && typeof moduleId !== "undefined"){
         findLessonsForModule(moduleId)}
     },[moduleId])
     return(
-             <div>
+             <div >
 
                     <nav className="navbar navbar-dark ">
 
@@ -28,7 +28,7 @@ if(moduleId !== "undefined" && typeof moduleId !== "undefined"){
                             {
                                 lessons.map(lesson=>
                                     <li className="nav-item  " >
-                                        <a className={`nav-link ${lesson._id === lessonId ?'bg-primary': ''} `} href="#">
+                                        <a className={`nav-link mt-3 mr-2 ${lesson._id === lessonId ?'bg-primary': ''} `} href="#">
                                             <EditableItem
                                                 key={lesson._id}
                                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
@@ -44,9 +44,11 @@ if(moduleId !== "undefined" && typeof moduleId !== "undefined"){
 
 
                             }
-                            <li> <button onClick={()=>createLesson(moduleId)}
-                                         className=" float-right fa fa-plus"> </button></li>
 
+                            <li onClick={()=>createLesson(moduleId)} className="nav-item">
+                                <a className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#"
+                                   tabIndex="-1 "> Add Lesson + </a>
+                            </li>
                                     </ul>
 
                     </nav>
