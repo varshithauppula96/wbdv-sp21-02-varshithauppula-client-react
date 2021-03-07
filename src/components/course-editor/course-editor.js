@@ -1,10 +1,10 @@
-import React from 'react'
-import {Link,useParams} from "react-router-dom";
+import React,{useState,useEffect} from 'react'
+import {BrowserRouter,useParams,Link, Route} from "react-router-dom";
 import {combineReducers} from 'redux'
 import ModuleList from "./module-lists";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
-
+import {findCourseById} from "../services/course-services";
 
 import {Provider} from "react-redux";
 import {createStore} from "redux";
@@ -17,13 +17,21 @@ lessonReducer:lessonReducer,
 topicReducer:topicReducer})
 
 const store = createStore(reducer)
-const CourseEditor =({history,params}) =>{
+const CourseEditor =({history}) =>{
+
 const {layout,courseId,moduleId}=useParams();
+    const [courseName, setCourseName] = useState({title: ""})
+    useEffect(() => {
+        findCourseById(courseId).then(course => {setCourseName({title:course.title})})
+    }, [courseId])
     return(
         <Provider store={store}>
 
             <h1>
-                <button onClick={()=>history.goBack()}><i className="fa fa-times" aria-hidden="true"> </i> </button>
+                <button>
+                      <a href={`/courses/${layout}`} className="fa fa-times" aria-hidden="true"> </a>
+
+</button>
            Course Editor
             </h1>
 

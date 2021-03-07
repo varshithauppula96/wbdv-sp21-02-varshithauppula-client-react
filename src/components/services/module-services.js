@@ -1,7 +1,7 @@
 
 
-const COURSES_URL="https://wbdv-generic-server.herokuapp.com/api/1234/courses"
-const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/1234/modules"
+const COURSES_URL="https://wbdv-generic-server.herokuapp.com/api/00102539/courses"
+const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/00102539/modules"
 
 export const createModule = (courseId, module) =>
     fetch(`${COURSES_URL}/${courseId}/modules`, {

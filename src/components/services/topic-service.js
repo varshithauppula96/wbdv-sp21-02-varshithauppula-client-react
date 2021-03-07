@@ -1,7 +1,7 @@
 import {createModule, deleteModule, findModulesForCourse, updateModule} from "./module-services";
 
-const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/1234/lessons"
-const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/1234/topics"
+const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/00102539/lessons"
+const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/00102539/topics"
 
 export const createTopic = (lessonId,topic) =>
     fetch(`${LESSONS_URL}/${lessonId}/topics`, {
