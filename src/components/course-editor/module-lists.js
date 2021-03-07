@@ -19,8 +19,8 @@ const ModuleList = ({modules= [],
     return(
 
 
-                <div className="p-3 bg-dark text-white">
-    <h1> Module List</h1>
+                <div>
+    <h1 className=" text-light"> Module List</h1>
 
         <ul className="list-group">
             {

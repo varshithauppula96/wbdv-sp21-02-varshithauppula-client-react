@@ -16,7 +16,7 @@ const EditableItem =({item,
                                         {item.title}
                                 </Link>
 
-                                <i onClick= {() => setEditing(true)} className="float-right fas fa-edit"> </i>
+                                <i onClick= {() => setEditing(true)} className="float-right m-1 fas fa-edit"> </i>
                         </>
                 }
                 {

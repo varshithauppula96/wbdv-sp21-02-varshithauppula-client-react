@@ -34,15 +34,18 @@ const {layout,courseId,moduleId}=useParams();
 </button>
            Course Editor
             </h1>
-
+<br/>
 
             <div className="row ">
                 <div className="col-4">
-
+                    <div className="p-3 bg-dark ">
                     <ModuleList/>
+                    </div>
                 </div>
                 <div className="col-8">
+
                     <LessonTabs/>
+
                     <br/>
                     <TopicPills/>
                 </div>

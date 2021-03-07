@@ -32,9 +32,12 @@ const TopicPills = ({topics =[],
 
               <nav className="navbar navbar-dark ">
             <ul className="nav nav-pills">
+                <li className="nav-item">
+                    <a onClick={()=>createTopic(lessonId,moduleId)} className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#" tabIndex="-1 "> Add Topic + </a>
+                </li>
         {
             topics.map(topic=>
-                <li className=" nav-item "> <a className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#">
+                <li className=" nav-item "> <a className={` mt-3 mr-2 nav-link ${topic._id === topicId ? 'bg-primary text-light' : ''} `} href="#">
                     <EditableItem
                         key={topic._id}
                         to = {`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
@@ -43,9 +46,7 @@ const TopicPills = ({topics =[],
                         item={topic}/></a>
             </li>)
         }
-                <li className="nav-item">
-                    <a onClick={()=>createTopic(lessonId,moduleId)} className=" mt-3 mr-2 bg-secondary text-light nav-link" href="#" tabIndex="-1 "> Add Topic + </a>
-                </li>
+
 
 
             </ul>
