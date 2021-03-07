@@ -71,10 +71,12 @@ const dtpm  =(dispatch) =>({
         lessonService.createLesson(moduleId,{title:'new Lesson'}).then(lesson =>dispatch({type: "CREATELESSON", lesson:lesson}))
     },
     updateLesson:(newItem) => {
-        dispatch({type:"UPDATELESSON", updateLesson:newItem})
+        lessonService.updateLesson(newItem._id,newItem).then (status=> dispatch({type:"UPDATELESSON", updateLesson:newItem}))
+
     },
     deleteLesson:  (lessonToDelete) =>{
-        dispatch({type:"DELETELESSON",deleteLesson:lessonToDelete})
+        lessonService.deleteLesson(lessonToDelete._id).then(
+            status => dispatch({type:"DELETELESSON",lessonToDelete:lessonToDelete}))
     },
     findLessonsForModule:(moduleId) =>{
 

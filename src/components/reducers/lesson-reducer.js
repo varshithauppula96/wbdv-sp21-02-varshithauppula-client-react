@@ -17,7 +17,7 @@ const lessonReducer = (state = initialState, action) => {
             ...state,
             lessons: state.lessons.filter(
                 lesson => {
-                    if(lesson._id !== action.deleteLesson._id)
+                    if(lesson._id !== action.lessonToDelete._id)
                     {
                         return true
                     }

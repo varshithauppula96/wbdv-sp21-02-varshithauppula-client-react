@@ -12,13 +12,20 @@ const TopicPills = ({topics =[],
                                 createTopic,
                                 updateTopic,
                                 deleteTopic,
-                                findTopicsForLesson}) =>
+                                findTopicsForLesson,
+                        setTopicToEmpty}) =>
         {
 
             const {layout,courseId,moduleId,topicId,lessonId}=useParams();
             useEffect(()=>{
-                findTopicsForLesson(lessonId)
-            },[lessonId])
+                if(lessonId !== "undefined" && typeof lessonId !== "undefined" && moduleId != "undefined" &&
+                typeof moduleId != "undefined") {
+                    findTopicsForLesson(lessonId)
+                }
+                else{
+                    setTopicToEmpty(topicId)
+                }
+            },[lessonId,moduleId])
             return(
 
           <div>
@@ -36,7 +43,7 @@ const TopicPills = ({topics =[],
             </li>)
         }
 
-                <div ><button onClick={()=>createTopic(lessonId)}
+                <div ><button onClick={()=>createTopic(lessonId,moduleId)}
                               className=" float-right fa fa-plus"> </button></div>
             </ul>
 
@@ -52,24 +59,33 @@ const TopicPills = ({topics =[],
         })
 
             const dtpm  =(dispatch) =>({
-                createTopic: (lessonId) =>{
-                    topicService.createTopic(lessonId,{title:'new Topic'}).then(topic =>dispatch({type: "CREATETOPIC", topic:topic}))
+                createTopic: (lessonId,moduleId) => {
+                    topicService.createTopic(lessonId, {title: 'new Topic'}).then(topic => dispatch({
+                        type: "CREATETOPIC",
+                        topic: topic
+                    }))
                 },
 
-                findTopicsForLesson:(lessonId) =>{
+                findTopicsForLesson: (lessonId) => {
 
-                    topicService.findTopicsForLesson(lessonId).then(topics =>{dispatch({type:"FIND_TOPICS_FOR_LESSON",topics:topics})})
+                    topicService.findTopicsForLesson(lessonId).then(topics => {
+                        dispatch({type: "FIND_TOPICS_FOR_LESSON", topics: topics})
+                    })
 
 
                 },
 
-
+                setTopicToEmpty: (topicId) => {dispatch({
+                    type: "CLEANTOPIC"
+                })
+                },
 
                 updateTopic:(newItem) => {
-                    dispatch({type:"UPDATETOPIC", updateTopic:newItem})
+                    topicService.updateTopic(newItem._id,newItem).then (status=> dispatch({type:"UPDATETOPIC", updateTopic:newItem}))
+
                 },
                 deleteTopic:  (topicToDelete) =>{
-                    dispatch({type:"DELETETOPIC",deleteTopic:topicToDelete})
+                    topicService.deleteTopic(topicToDelete._id).then(status=> dispatch({type:"DELETETOPIC",topicToDelete:topicToDelete}))
                 }
             })
 

@@ -17,7 +17,7 @@ const topicReducer = (state = initialState, action) => {
             ...state,
             topics: state.topics.filter(
                 topic => {
-                    if(topic._id !== action.deleteTopic._id)
+                    if(topic._id !== action.topicToDelete._id)
                     {
                         return true
                     }
@@ -43,6 +43,11 @@ const topicReducer = (state = initialState, action) => {
                 ...state,
                 topics:action.topics,
 
+            }
+        case "CLEANTOPIC":
+            return{
+                ...state,
+                topics:[]
             }
         default:
             return state
