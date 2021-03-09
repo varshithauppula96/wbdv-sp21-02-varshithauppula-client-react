@@ -80,7 +80,7 @@ const TopicPills = ({topics =[],
 
                 },
 
-                setTopicToEmpty: (topicId) => {dispatch({
+                setTopicToEmpty:()=> {dispatch({
                     type: "CLEANTOPIC"
                 })
                 },

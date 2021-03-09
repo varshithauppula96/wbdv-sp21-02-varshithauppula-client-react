@@ -3,14 +3,15 @@ import {connect} from "react-redux";
 import EditableItem from "./editable-item";
 import{useParams} from "react-router-dom";
 import lessonService from "../services/lesson-service";
-
-
+import topicService from "../services/topic-service";
+let t= [];
 const LessonTabs = ({lessons= [],
                         findLessonsForModule,
     to,
     createLesson,
                         updateLesson,
-                        deleteLesson
+                        deleteLesson,setTopicToEmpty
+
                     }) =>
 {
     const {layout,lessonId,moduleId,courseId} = useParams();
@@ -77,8 +78,15 @@ const dtpm  =(dispatch) =>({
 
     },
     deleteLesson:  (lessonToDelete) =>{
+t=topicService.findTopicsForLesson(lessonToDelete)
+        console.log(t)
         lessonService.deleteLesson(lessonToDelete._id).then(
-            status => dispatch({type:"DELETELESSON",lessonToDelete:lessonToDelete}))
+            status => dispatch({type:"DELETELESSON",lessonToDelete:lessonToDelete}
+        ))
+
+
+
+
     },
     findLessonsForModule:(moduleId) =>{
 
