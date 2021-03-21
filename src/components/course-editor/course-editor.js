@@ -11,6 +11,7 @@ import {createStore} from "redux";
 import lessonReducer from "../reducers/lesson-reducer";
 import moduleReducer from "../reducers/modules-reducer";
 import topicReducer from "../reducers/topic-reducer";
+import WidgetList from "./widgets/widget-list";
 
 const reducer =combineReducers({moduleReducer:moduleReducer,
 lessonReducer:lessonReducer,
@@ -21,6 +22,7 @@ const CourseEditor =({history}) =>{
 
 const {layout,courseId,moduleId}=useParams();
     const [courseName, setCourseName] = useState({title: ""})
+
     useEffect(() => {
         findCourseById(courseId).then(course => {setCourseName({title:course.title})})
     }, [courseId])
@@ -37,17 +39,20 @@ const {layout,courseId,moduleId}=useParams();
 <br/>
 
             <div className="row ">
-                <div className="col-4">
+                <div className="col-3">
                     <div className="p-3 bg-dark ">
                     <ModuleList/>
                     </div>
                 </div>
-                <div className="col-8">
+                <div className="col-9">
 
                     <LessonTabs/>
 
                     <br/>
                     <TopicPills/>
+
+                    <br/>
+                    <WidgetList/>
                 </div>
                 </div>
 </div>

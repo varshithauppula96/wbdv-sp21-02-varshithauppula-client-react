@@ -19,6 +19,7 @@ function App() {
                 {/*  <CourseManager/>*/}
                 {/*  <CourseEditor/>*/}
                 {/*</div>*/}
+
             </div>
         </BrowserRouter>
     );
