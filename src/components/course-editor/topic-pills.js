@@ -40,10 +40,11 @@ const TopicPills = ({topics =[],
                 <li className=" nav-item "> <a className={` mt-3 mr-2 nav-link ${topic._id === topicId ? 'bg-primary text-light' : ''} `} href="#">
                     <EditableItem
                         key={topic._id}
-                        to = {`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
+                        to = {`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}/widgets`}
                         deleteItem={deleteTopic}
                         updateItem={updateTopic}
-                        item={topic}/></a>
+                        item={topic}
+                    /></a>
             </li>)
         }
 

@@ -14,7 +14,8 @@ function App() {
                 {/*<Route path="/editor" component={CourseEditor}/>*/}
                 <Route path={[ "/courses/:layout/edit/:courseId","/courses/:layout/edit/:courseId/modules/:moduleId",
                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
-                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]} exact={true} render={(props) => <CourseEditor {...props}/>}/>
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets"]} exact={true} render={(props) => <CourseEditor {...props}/>}/>
                 {/*<div className="container-fluid">*/}
                 {/*  <CourseManager/>*/}
                 {/*  <CourseEditor/>*/}
