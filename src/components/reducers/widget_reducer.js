@@ -5,7 +5,7 @@ const initialState = {
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATE_WIDGET":
-            alert("create widget")
+
             console.log(action.widget)
             return  {
                 ...state,
@@ -17,7 +17,7 @@ const widgetReducer = (state = initialState, action) => {
                 widgets: action.widgets
             }
         case "UPDATE_WIDGET":
-            alert("update widget")
+
             return {
                 ...state,
                 widgets: state.widgets.map(w => {
@@ -29,7 +29,7 @@ const widgetReducer = (state = initialState, action) => {
                 })
             }
         case "DELETE_WIDGET":
-            alert("delete widget")
+            
             return {
                 ...state,
                 widgets: state.widgets.filter(w => {
