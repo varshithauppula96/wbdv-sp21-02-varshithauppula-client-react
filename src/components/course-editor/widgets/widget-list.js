@@ -138,7 +138,7 @@ const dtpm = (dispatch) => {
                 typeof lessonId != "undefined" && moduleId != "undefined" && typeof moduleId != "undefined" && tid != "undefined" &&
                 typeof tid != "undefined") )
             {
-                alert("Invalid operation. You have to select topic first!")
+                alert("Cannot add widget without topic!")
             } else {
                 widgetService.createWidget(tid,{type: "HEADING", size: 1, text: "New Widget"}).then(
                     theActualWidget => dispatch({
