@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react'
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph_widget";
+import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
 import {useParams} from "react-router-dom"
 import EditableItem from "../editable-item";
 import {connect} from "react-redux";
@@ -83,6 +85,18 @@ const WidgetList = ({
                             {/*        <i onClick={() => setEditingWidget(widget)} className="fas fa-2x fa-cog float-right"></i>*/}
                             {/*      </>*/}
                             {/*}*/}
+                            {
+                                widget.type === "LIST" &&
+                                <ListWidget
+                                    editing={editingWidget.id === widget.id}
+                                    widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
+                            }
+                            {
+                                widget.type === "IMAGE" &&
+                                <ImageWidget
+                                    editing={editingWidget.id === widget.id}
+                                    widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
+                            }
                             {
                                 widget.type === "HEADING" &&
                                 <HeadingWidget to={`/courses/${layout}/editor/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}

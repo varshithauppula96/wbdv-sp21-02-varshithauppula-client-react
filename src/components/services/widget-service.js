@@ -1,5 +1,5 @@
 
-const WIDGET_URL = "https://agile-atoll-78555.herokuapp.com/api";
+const WIDGET_URL = "http://localhost:8080/api";
 
 export const createWidget = (tid, widget) => fetch(`${WIDGET_URL}/topics/${tid}/widgets`, {
     method: "POST",
