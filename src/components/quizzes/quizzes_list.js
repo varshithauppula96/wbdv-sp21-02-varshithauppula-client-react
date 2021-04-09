@@ -1,6 +1,9 @@
 import React, {useState,useEffect} from "react"
 import quizService from "../services/quiz-service"
+import {Link, useParams} from "react-router-dom";
+
 const QuizzesList =() =>{
+    const {courseId} = useParams();
     const [quizzes,setQuizzes] =useState([])
     useEffect(() =>{
 // fetch("http://localhost:3000/api/quizzes")
@@ -12,11 +15,11 @@ const QuizzesList =() =>{
     return(
         <div>
             <h1>Quizzes list</h1>
-    <ul className="list-group"> {quizzes.map((quiz) => {
+    <div className="list-group"> {quizzes.map((quiz) => {
         return(
-            <li className="list-group-item">{quiz.title}</li>
+            <a href = {`/courses/${courseId}/quizzes/${quiz._id}`} className="list-group-item">{quiz.title}</a>
         )
-    })}</ul>
+    })}</div>
         </div>
     )
 }
