@@ -40,6 +40,7 @@ const CourseRow = (
             </td>
             <td><div className="d-none d-sm-table-cell">{course.owner}</div> </td>
             <td><div className="d-none d-lg-table-cell">{course.lastModified} </div> </td>
+            <td>  <a href = {`/courses/${course._id}/quizzes`}> Quizzes</a></td>
             <td >
                 <div className="float-right">
                 {editing &&
