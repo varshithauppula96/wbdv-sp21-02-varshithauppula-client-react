@@ -3,14 +3,23 @@ const MultipleChoiceQuestion =({question}) =>
 {
     return(
         <div>
-            <h4>
-                Multiple Choice
 
-            </h4>
-            <h3>
-                {question.title}
-            </h3>
-            {question.question}
+            <h4>
+                {question.question}
+                </h4>
+            {question.correct}
+
+            {
+                question.choices.map((choice) =>{
+                    return(
+                        <label>
+                            <input name={question._id}    type ="radio"/>
+                            {choice}
+                        </label>
+                    )
+                })
+            }
+
         </div>
     )
 }
