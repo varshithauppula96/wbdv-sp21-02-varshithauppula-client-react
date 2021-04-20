@@ -21,7 +21,7 @@ const Quiz = () => {
     return (
         <div>
             <div className='row'>
-                <Link to={"/courses/table"} >Go back</Link>
+                <a href ={"/courses/table"} >Go back</a>
                 <h3>Quiz {quizId} ({questions.length})</h3>
             </div>
             {graded && <Link className='btn btn-secondary'
