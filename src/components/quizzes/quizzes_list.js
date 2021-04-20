@@ -14,12 +14,21 @@ const QuizzesList =() =>{
     }, [])
     return(
         <div>
-            <h1>Quizzes list</h1>
-    <div className="list-group"> {quizzes.map((quiz) => {
-        return(
-            <a href = {`/courses/${courseId}/quizzes/${quiz._id}`} className="list-group-item">{quiz.title}</a>
-        )
-    })}</div>
+            <div className='row'>
+                <Link to='/courses/table' className='fas fa-times'/>
+                <h1>Quizzes list</h1>
+            </div>
+
+            <ul className='list-group'>
+                {
+                    quizzes.map(quiz => <li className='list-group-item' key={quiz._id}>
+                        <Link className='btn' to={`/courses/${courseId}/quizzes/${quiz._id}`}>{quiz.title}</Link>
+                        <Link to={`/courses/${courseId}/quizzes/${quiz._id}`} className='btn btn-primary float-right'>Start</Link>
+                        <Link className='btn btn-secondary float-right'
+                              to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}>Attempts Histories</Link>
+                    </li>)
+                }
+            </ul>
         </div>
     )
 }

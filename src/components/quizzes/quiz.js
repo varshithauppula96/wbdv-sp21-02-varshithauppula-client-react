@@ -1,31 +1,59 @@
 import React,{useState,useEffect} from 'react'
-import {useParams} from "react-router-dom";
-import questionService from "../services/question-service"
+import {Link,useParams} from "react-router-dom";
+import QuestionService from "../services/question-service"
 import Question from "./questions/question";
-const Quiz= () => {
-    const [questions,setQuestions] =useState([]);
-    const {courseId,quizId} =useParams();
-
-    useEffect(() =>{
-        questionService.findQuestionsForQuiz(quizId).then(
-            (questions) => {
-                setQuestions(questions)
-    },[])})
-
+import QuizService from '../services/quiz-service';
+const Quiz = () => {
+    const {courseId, quizId} = useParams();
+    const [quiz, setQuiz] = useState({});
+    const [questions, setQuestions] = useState([]);
+    const [graded, setGraded] = useState(false)
+    const [attempt, setAttempt] = useState({})
+    useEffect(() => {
+        QuizService.findQuizById(quizId)
+            .then(res => setQuiz(res));
+        QuestionService.findQuestionsForQuiz(quizId)
+            .then(res => setQuestions(res));
+        if (graded) {
+            QuizService.submitQuiz(quiz._id, questions).then(res => setAttempt(res));
+        }
+    }, [quizId, graded])
     return (
         <div>
-
-            <h2>Quiz {quizId}</h2>
-            <ul>
+            <div className='row'>
+                <Link to={"/courses/table"} >Go back</Link>
+                <h3>Quiz {quizId} ({questions.length})</h3>
+            </div>
+            {graded && <Link className='btn btn-secondary'
+                             to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>See attempts</Link>}
+            {
+                questions.map(question =>
+                    <div key={question._id}>
+                        <Question question={question} questions={questions} setQuestions={setQuestions}
+                                  graded={graded}/>
+                    </div>
+                )
+            }
+            <div>
+                <button onClick={() => setGraded(true)}
+                        className='btn btn-success'
+                        disabled={graded}>
+                    Submit
+                </button>
                 {
-                    questions.map(question =>
-                        <li>
-                            <Question question = {question}/>
-                        </li>
-                    )
+                    graded &&
+                    <div>
+
+                        <h2>submit score: {attempt.score}</h2>
+                        <h2>
+                            submit id: {attempt._id}
+                        </h2>
+                    </div>
                 }
-            </ul>
+            </div>
         </div>
+
     )
 }
+
 export default Quiz

@@ -5,6 +5,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import QuizzesList from "./components/quizzes/quizzes_list";
 import Quiz from "./components/quizzes/quiz";
 import Home from "./components/home"
+import QuizAttempts from "./components/quizzes/quiz_attempts";
 
 function App() {
     return (
@@ -16,6 +17,9 @@ function App() {
                 <Route path="/courses/:courseId/quizzes/:quizId" component={Quiz}/>
                 <Route path ="/courses/:courseId/quizzes" exact={true}  component={QuizzesList}/>
                 {/*<Route path="/editor" component={CourseEditor}/>*/}
+                <Route path='/courses/:courseId/quizzes/:quizId/attempts' exact={true}>
+                    <QuizAttempts/>
+                </Route>
                 <Route path={[ "/courses/:layout/edit/:courseId","/courses/:layout/edit/:courseId/modules/:moduleId",
                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
                     "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
